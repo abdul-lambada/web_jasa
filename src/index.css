@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 10%;
+
+    /* SyntaxTrust Brand Colors */
+    --primary: 210 80% 15%; /* Dark blue #0A2540 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 210 80% 15%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 20% 45%;
+
+    --accent-lime: 110 100% 54%; /* Lime green #39FF14 */
+    --accent-orange: 25 100% 52%; /* Orange #FF6B00 */
+    --accent: 110 100% 54%;
+    --accent-foreground: 210 80% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 110 100% 54%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210 80% 15%) 0%, hsl(210 70% 25%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsla(110, 100%, 54%, 0.3);
+    --shadow-card: 0 10px 30px -10px hsla(210, 80%, 15%, 0.1);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 210 80% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 210 80% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 210 80% 12%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 110 100% 54%;
+    --primary-foreground: 210 80% 15%;
+
+    --secondary: 210 60% 20%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 210 60% 20%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 110 100% 54%;
+    --accent-foreground: 210 80% 15%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 210 60% 20%;
+    --input: 210 60% 20%;
+    --ring: 110 100% 54%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
