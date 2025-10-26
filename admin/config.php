@@ -4,9 +4,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 $DB_HOST = getenv('DB_HOST') ?: 'localhost';
-$DB_NAME = getenv('DB_NAME') ?: 'web_jasa';
-$DB_USER = getenv('DB_USER') ?: 'root';
-$DB_PASS = getenv('DB_PASS') ?: '';
+$DB_NAME = getenv('DB_NAME') ?: 'dpgwgcvf_db_akar';
+$DB_USER = getenv('DB_USER') ?: 'dpgwgcvf_db_akar';
+$DB_PASS = getenv('DB_PASS') ?: '4E~wddE91q&orjTx';
 
 try {
   $pdo = new PDO("mysql:host={$DB_HOST};dbname={$DB_NAME};charset=utf8mb4", $DB_USER, $DB_PASS, [

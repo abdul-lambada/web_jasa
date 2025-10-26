@@ -4,8 +4,11 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  base: '/web_jasa/',
+export default defineConfig(({ mode }) => {
+  const BASE = process.env.VITE_BASE || '/';
+  const apiRewrite = (p: string) => p.replace(/^\/api/, `${BASE.replace(/\/$/, '')}/api`);
+  return ({
+  base: BASE,
   server: {
     host: "::",
     port: 8080,
@@ -13,7 +16,7 @@ export default defineConfig(({ mode }) => ({
       "/api": {
         target: "http://localhost",
         changeOrigin: true,
-        rewrite: (p) => p.replace(/^\/api/, "/web_jasa/api"),
+        rewrite: apiRewrite,
       },
     },
   },
@@ -23,4 +26,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-}));
+});
+});

@@ -21,6 +21,8 @@ import type { LucideIcon } from "lucide-react";
 import heroImage from "@/assets/hero-coding.jpg";
 
 const Index = () => {
+  const BASE_URL = (import.meta as any).env?.BASE_URL || '/';
+  const API_BASE = `${BASE_URL.replace(/\/$/, '')}/api`;
   type Service = { icon: string; title: string; description: string };
   type Client = { name: string; category: string; year: number };
   type Feature = { icon: string; title: string; description: string };
@@ -401,13 +403,10 @@ const Index = () => {
     touchStartX.current = null; touchDeltaX.current = 0;
   };
 
-  // Resolve asset URLs stored as '/web_jasa/...'
+  // Resolve asset URLs stored under site base
   const resolveAssetUrl = (u?: string) => {
     if (!u) return '';
-    if (u.startsWith('/web_jasa/')) {
-      // Point to Apache (default port) instead of Vite dev server port 8080
-      return `${window.location.protocol}//${window.location.hostname}${u}`;
-    }
+    if (u.startsWith(BASE_URL)) return u;
     return u;
   };
 
@@ -416,11 +415,11 @@ const Index = () => {
     const fetchAll = async () => {
       try {
         const [s, sv, c, f, w] = await Promise.all([
-          fetch('/web_jasa/api/settings.php').then(r => r.ok ? r.json() : Promise.reject(new Error('settings'))),
-          fetch('/web_jasa/api/services.php').then(r => r.ok ? r.json() : Promise.reject(new Error('services'))),
-          fetch('/web_jasa/api/clients.php').then(r => r.ok ? r.json() : Promise.reject(new Error('clients'))),
-          fetch('/web_jasa/api/features.php').then(r => r.ok ? r.json() : Promise.reject(new Error('features'))),
-          fetch('/web_jasa/api/workflow.php').then(r => r.ok ? r.json() : Promise.reject(new Error('workflow'))),
+          fetch(`${API_BASE}/settings.php`).then(r => r.ok ? r.json() : Promise.reject(new Error('settings'))),
+          fetch(`${API_BASE}/services.php`).then(r => r.ok ? r.json() : Promise.reject(new Error('services'))),
+          fetch(`${API_BASE}/clients.php`).then(r => r.ok ? r.json() : Promise.reject(new Error('clients'))),
+          fetch(`${API_BASE}/features.php`).then(r => r.ok ? r.json() : Promise.reject(new Error('features'))),
+          fetch(`${API_BASE}/workflow.php`).then(r => r.ok ? r.json() : Promise.reject(new Error('workflow'))),
         ]);
         setSettings(s || {});
         setServices(Array.isArray(sv) ? sv : []);
@@ -947,7 +946,7 @@ const Index = () => {
                   if (Object.keys(errs).length) { setMeetErrors(errs); return; }
                   try {
                     setMeetSubmitting(true);
-                    const res = await fetch('/web_jasa/api/meetings.php', {
+                    const res = await fetch(`${API_BASE}/meetings.php`, {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({
