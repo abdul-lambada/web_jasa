@@ -40,9 +40,9 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
           <button class="btn btn-outline-secondary ms-2" type="submit">Cari</button>
         </form>
         <?php if ($q !== ''): ?>
-          <a class="btn btn-outline-secondary" href="/web_jasa/admin/workflow/index.php">Reset</a>
+          <a class="btn btn-outline-secondary" href="/admin/workflow/index.php">Reset</a>
         <?php endif; ?>
-        <a href="/web_jasa/admin/workflow/create.php" class="btn btn-primary">Tambah Step</a>
+        <a href="/admin/workflow/create.php" class="btn btn-primary">Tambah Step</a>
       </div>
     </div>
     <div class="card">
@@ -69,8 +69,8 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
               <td><?= (int)$r['sort_order'] ?></td>
               <td><span class="badge bg-<?= $r['active'] ? 'success' : 'secondary' ?>"><?= $r['active'] ? 'Yes' : 'No' ?></span></td>
               <td>
-                <a class="btn btn-sm btn-outline-secondary" href="/web_jasa/admin/workflow/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
-                <form action="/web_jasa/admin/workflow/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus step ini?')">
+                <a class="btn btn-sm btn-outline-secondary" href="/admin/workflow/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
+                <form action="/admin/workflow/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus step ini?')">
                   <input type="hidden" name="_csrf" value="<?= csrf_token() ?>">
                   <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                   <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>

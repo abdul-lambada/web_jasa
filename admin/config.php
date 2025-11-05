@@ -4,9 +4,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 
 $DB_HOST = getenv('DB_HOST') ?: 'localhost';
-$DB_NAME = getenv('DB_NAME') ?: 'dpgwgcvf_db_akar';
-$DB_USER = getenv('DB_USER') ?: 'dpgwgcvf_db_akar';
-$DB_PASS = getenv('DB_PASS') ?: '4E~wddE91q&orjTx';
+$DB_NAME = getenv('DB_NAME') ?: 'dpgwgcvf_jasa_web';
+$DB_USER = getenv('DB_USER') ?: 'dpgwgcvf_jasa_web';
+$DB_PASS = getenv('DB_PASS') ?: '#10c6f1gZ';
 
 try {
   $pdo = new PDO("mysql:host={$DB_HOST};dbname={$DB_NAME};charset=utf8mb4", $DB_USER, $DB_PASS, [
@@ -25,7 +25,7 @@ function is_logged_in(): bool { return isset($_SESSION['admin_user']); }
 function require_login(): void {
   $script = basename($_SERVER['SCRIPT_NAME'] ?? '');
   if ($script !== 'login.php' && !is_logged_in()) {
-    header('Location: /web_jasa/admin/login.php');
+    header('Location: /admin/login.php');
     exit;
   }
 }

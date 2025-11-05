@@ -27,6 +27,16 @@ jobs:
         env:
           VITE_BASE: /
         run: npm run build
+      
+      - name: Copy PHP API into dist
+        run: |
+          mkdir -p dist/api
+          cp -R api/. dist/api/
+      
+      - name: Copy Admin backend into dist
+        run: |
+          mkdir -p dist/admin
+          cp -R admin/. dist/admin/
 
       - name: Publish dist to deploy branch
         uses: peaceiris/actions-gh-pages@v3

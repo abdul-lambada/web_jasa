@@ -29,7 +29,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && ($_POST['action'] ?? '')
     $stmt = $pdo->prepare('UPDATE meetings SET status = ? WHERE id = ?');
     $stmt->execute([$st, $id]);
     set_flash('global', 'Status updated', 'success');
-    header('Location: /web_jasa/admin/meetings/index.php');
+    header('Location: /admin/meetings/index.php');
     exit;
   }
 }
@@ -43,7 +43,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && ($_POST['action'] ?? '')
     $stmt = $pdo->prepare('UPDATE meetings SET notes = ? WHERE id = ?');
     $stmt->execute([$notes, $id]);
     set_flash('global', 'Notes saved', 'success');
-    header('Location: /web_jasa/admin/meetings/index.php');
+    header('Location: /admin/meetings/index.php');
     exit;
   }
 }
@@ -101,8 +101,8 @@ $rows = $stmt->fetchAll();
         </div>
         <div class="col-auto ms-auto d-flex gap-2">
           <?php $queryStr = http_build_query(array_filter(['status'=>$statusFilter?:null,'q'=>$q?:null])); ?>
-          <a class="btn btn-sm btn-outline-secondary" href="/web_jasa/admin/meetings/export_csv.php<?= $queryStr?('?'.$queryStr):'' ?>">Export CSV</a>
-          <a class="btn btn-sm btn-outline-secondary" target="_blank" href="/web_jasa/admin/meetings/export_print.php<?= $queryStr?('?'.$queryStr):'' ?>">Print PDF</a>
+          <a class="btn btn-sm btn-outline-secondary" href="/admin/meetings/export_csv.php<?= $queryStr?('?'.$queryStr):'' ?>">Export CSV</a>
+          <a class="btn btn-sm btn-outline-secondary" target="_blank" href="/admin/meetings/export_print.php<?= $queryStr?('?'.$queryStr):'' ?>">Print PDF</a>
         </div>
       </form>
     </div>
@@ -169,7 +169,7 @@ $rows = $stmt->fetchAll();
   <nav>
     <ul class="pagination mt-3">
       <?php 
-        $base = '/web_jasa/admin/meetings/index.php';
+        $base = '/admin/meetings/index.php';
         for ($p=1; $p<=$totalPages; $p++): 
           $qs = array_filter(['status'=>$statusFilter?:null,'q'=>$q?:null,'page'=>$p]);
           $href = $base.'?'.http_build_query($qs);

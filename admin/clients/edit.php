@@ -2,7 +2,7 @@
 require __DIR__ . '/../config.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if ($id <= 0) { header('Location: /web_jasa/admin/clients/index.php'); exit; }
+if ($id <= 0) { header('Location: /admin/clients/index.php'); exit; }
 
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('UPDATE clients SET name=?, category=?, year=?, sort_order=?, active=? WHERE id=?');
     $stmt->execute([$name, $category, $year, $sort_order, $active, $id]);
     set_flash('global', 'Perubahan client disimpan', 'success');
-    header('Location: /web_jasa/admin/clients/index.php');
+    header('Location: /admin/clients/index.php');
     exit;
   }
 } else {
   $stmt = $pdo->prepare('SELECT * FROM clients WHERE id=?');
   $stmt->execute([$id]);
   $row = $stmt->fetch();
-  if (!$row) { header('Location: /web_jasa/admin/clients/index.php'); exit; }
+  if (!$row) { header('Location: /admin/clients/index.php'); exit; }
   $name = $row['name'];
   $category = $row['category'];
   $year = (int)$row['year'];
@@ -42,7 +42,7 @@ require __DIR__ . '/../layout/header.php';
   <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Edit Client</h4>
-      <a href="/web_jasa/admin/clients/index.php" class="btn btn-secondary">Kembali</a>
+      <a href="/admin/clients/index.php" class="btn btn-secondary">Kembali</a>
     </div>
     <div class="card">
       <div class="card-body">

@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $safeName = 'logo_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4)) . '.' . $ext;
           $destFs = rtrim($uploadDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $safeName;
           if (move_uploaded_file($f['tmp_name'], $destFs)) {
-            $newLogoPath = '/web_jasa/uploads/' . $safeName;
+            $newLogoPath = '/uploads/' . $safeName;
           } else {
             $errors['brand_logo'] = 'Gagal menyimpan file logo';
           }
@@ -69,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       ['anim_delay_ms', (string)$animDelay],
     ];
     if ($newLogoPath !== '') {
-      // Optional: remove old logo file if exists and within /web_jasa/uploads/
+      // Optional: remove old logo file if exists and within /uploads/
       $oldLogo = $values['brand_logo'] ?? '';
-      if ($oldLogo && strpos($oldLogo, '/web_jasa/uploads/') === 0) {
+      if ($oldLogo && strpos($oldLogo, '/uploads/') === 0) {
         $projectRoot = dirname(__DIR__); // .../admin
         $root = dirname($projectRoot);   // .../web_jasa
-        $rel = substr($oldLogo, strlen('/web_jasa/')); // uploads/filename.ext
+        $rel = ltrim($oldLogo, '/'); // uploads/filename.ext
         $oldPath = $root . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $rel);
         if (is_file($oldPath)) { @unlink($oldPath); }
       }
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $stmt->execute([$k, $v]);
     }
     set_flash('global', 'Settings berhasil disimpan', 'success');
-    header('Location: /web_jasa/admin/settings/index.php');
+    header('Location: /admin/settings/index.php');
     exit;
   } else {
     $values = [

@@ -10,5 +10,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     set_flash('global', 'Feature berhasil dihapus', 'success');
   }
 }
-header('Location: /web_jasa/admin/features/index.php');
+header('Location: /admin/features/index.php');
 exit;

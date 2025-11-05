@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config.php';
-$ASSETS = '/web_jasa/sneat-1.0.0/assets';
+$ASSETS = '/sneat-1.0.0/assets';
 $__uri = $_SERVER['REQUEST_URI'] ?? '';
 $__active = function (string $prefix) use ($__uri) { return (strpos($__uri, $prefix) === 0) ? ' active' : ''; };
 // Load brand settings
@@ -33,7 +33,7 @@ try {
   <div class="layout-container">
     <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
       <div class="app-brand demo">
-        <a href="/web_jasa/admin/index.php" class="app-brand-text demo menu-text d-flex align-items-center gap-2">
+        <a href="/admin/index.php" class="app-brand-text demo menu-text d-flex align-items-center gap-2">
           <?php if ($__logo): ?>
             <img src="<?= e($__logo) ?>" alt="Logo" style="height:28px" />
             <span><?= e($__brand) ?></span>
@@ -43,13 +43,13 @@ try {
         </a>
       </div>
       <ul class="menu-inner py-1">
-        <li class="menu-item<?= $__active('/web_jasa/admin/index.php') ?>"><a href="/web_jasa/admin/index.php" class="menu-link"><div>Dashboard</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/services/') ?>"><a href="/web_jasa/admin/services/index.php" class="menu-link"><div>Services</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/clients/') ?>"><a href="/web_jasa/admin/clients/index.php" class="menu-link"><div>Clients</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/features/') ?>"><a href="/web_jasa/admin/features/index.php" class="menu-link"><div>Features</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/workflow/') ?>"><a href="/web_jasa/admin/workflow/index.php" class="menu-link"><div>Workflow</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/meetings/') ?>"><a href="/web_jasa/admin/meetings/index.php" class="menu-link"><div>Meetings</div></a></li>
-        <li class="menu-item<?= $__active('/web_jasa/admin/settings/') ?>"><a href="/web_jasa/admin/settings/index.php" class="menu-link"><div>Settings</div></a></li>
+        <li class="menu-item<?= $__active('/admin/index.php') ?>"><a href="/admin/index.php" class="menu-link"><div>Dashboard</div></a></li>
+        <li class="menu-item<?= $__active('/admin/services/') ?>"><a href="/admin/services/index.php" class="menu-link"><div>Services</div></a></li>
+        <li class="menu-item<?= $__active('/admin/clients/') ?>"><a href="/admin/clients/index.php" class="menu-link"><div>Clients</div></a></li>
+        <li class="menu-item<?= $__active('/admin/features/') ?>"><a href="/admin/features/index.php" class="menu-link"><div>Features</div></a></li>
+        <li class="menu-item<?= $__active('/admin/workflow/') ?>"><a href="/admin/workflow/index.php" class="menu-link"><div>Workflow</div></a></li>
+        <li class="menu-item<?= $__active('/admin/meetings/') ?>"><a href="/admin/meetings/index.php" class="menu-link"><div>Meetings</div></a></li>
+        <li class="menu-item<?= $__active('/admin/settings/') ?>"><a href="/admin/settings/index.php" class="menu-link"><div>Settings</div></a></li>
       </ul>
     </aside>
     <div class="layout-page">
@@ -63,7 +63,7 @@ try {
           </span>
           <div class="d-flex align-items-center gap-2 me-3">
             <span class="text-muted small"><?= e($_SESSION['admin_user'] ?? '') ?></span>
-            <a class="btn btn-sm btn-outline-secondary" href="/web_jasa/admin/logout.php">Logout</a>
+            <a class="btn btn-sm btn-outline-secondary" href="/admin/logout.php">Logout</a>
           </div>
         </div>
       </nav>

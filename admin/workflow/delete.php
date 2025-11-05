@@ -10,5 +10,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     set_flash('global', 'Step workflow berhasil dihapus', 'success');
   }
 }
-header('Location: /web_jasa/admin/workflow/index.php');
+header('Location: /admin/workflow/index.php');
 exit;

@@ -2,7 +2,7 @@
 require __DIR__ . '/../config.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-if ($id <= 0) { header('Location: /web_jasa/admin/services/index.php'); exit; }
+if ($id <= 0) { header('Location: /admin/services/index.php'); exit; }
 
 $errors = [];
 $icons = icon_whitelist();
@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('UPDATE services SET icon=?, title=?, description=?, sort_order=?, active=? WHERE id=?');
     $stmt->execute([$icon, $title, $description, $sort_order, $active, $id]);
     set_flash('global', 'Perubahan service disimpan', 'success');
-    header('Location: /web_jasa/admin/services/index.php');
+    header('Location: /admin/services/index.php');
     exit;
   }
 } else {
   $stmt = $pdo->prepare('SELECT * FROM services WHERE id=?');
   $stmt->execute([$id]);
   $row = $stmt->fetch();
-  if (!$row) { header('Location: /web_jasa/admin/services/index.php'); exit; }
+  if (!$row) { header('Location: /admin/services/index.php'); exit; }
   $icon = $row['icon'];
   $title = $row['title'];
   $description = $row['description'];
@@ -43,7 +43,7 @@ require __DIR__ . '/../layout/header.php';
   <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Edit Service</h4>
-      <a href="/web_jasa/admin/services/index.php" class="btn btn-secondary">Kembali</a>
+      <a href="/admin/services/index.php" class="btn btn-secondary">Kembali</a>
     </div>
     <div class="card">
       <div class="card-body">

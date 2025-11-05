@@ -4,11 +4,11 @@ require __DIR__ . '/config.php';
 // Bypass auth guard for this script
 // require_login() in config checks basename and won't redirect for login.php
 
-$ASSETS = '/web_jasa/sneat-1.0.0/assets';
+$ASSETS = '/sneat-1.0.0/assets';
 $error = '';
 
 if (isset($_SESSION['admin_user'])) {
-  header('Location: /web_jasa/admin/index.php');
+  header('Location: /admin/index.php');
   exit;
 }
 
@@ -24,7 +24,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
         $_SESSION['admin_user'] = $row['username'];
         $_SESSION['admin_name'] = $row['display_name'];
         $_SESSION['admin_role'] = $row['role'];
-        header('Location: /web_jasa/admin/index.php');
+        header('Location: /admin/index.php');
         exit;
       }
     } catch (Throwable $e) {
@@ -84,6 +84,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
       </div>
     </div>
   </div>
-  <script src="/web_jasa/sneat-1.0.0/assets/vendor/js/bootstrap.js"></script>
+  <script src="/sneat-1.0.0/assets/vendor/js/bootstrap.js"></script>
 </body>
 </html>

@@ -10,5 +10,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     set_flash('global', 'Client berhasil dihapus', 'success');
   }
 }
-header('Location: /web_jasa/admin/clients/index.php');
+header('Location: /admin/clients/index.php');
 exit;

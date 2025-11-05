@@ -40,9 +40,9 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
           <button class="btn btn-outline-secondary ms-2" type="submit">Cari</button>
         </form>
         <?php if ($q !== ''): ?>
-          <a class="btn btn-outline-secondary" href="/web_jasa/admin/clients/index.php">Reset</a>
+          <a class="btn btn-outline-secondary" href="/admin/clients/index.php">Reset</a>
         <?php endif; ?>
-        <a href="/web_jasa/admin/clients/create.php" class="btn btn-primary">Tambah Client</a>
+        <a href="/admin/clients/create.php" class="btn btn-primary">Tambah Client</a>
       </div>
     </div>
     <div class="card">
@@ -69,8 +69,8 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
               <td><?= (int)$r['sort_order'] ?></td>
               <td><span class="badge bg-<?= $r['active'] ? 'success' : 'secondary' ?>"><?= $r['active'] ? 'Yes' : 'No' ?></span></td>
               <td>
-                <a class="btn btn-sm btn-outline-secondary" href="/web_jasa/admin/clients/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
-                <form action="/web_jasa/admin/clients/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus client ini?')">
+                <a class="btn btn-sm btn-outline-secondary" href="/admin/clients/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
+                <form action="/admin/clients/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus client ini?')">
                   <input type="hidden" name="_csrf" value="<?= csrf_token() ?>">
                   <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                   <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>

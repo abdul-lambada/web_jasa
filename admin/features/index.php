@@ -40,9 +40,9 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
           <button class="btn btn-outline-secondary ms-2" type="submit">Cari</button>
         </form>
         <?php if ($q !== ''): ?>
-          <a class="btn btn-outline-secondary" href="/web_jasa/admin/features/index.php">Reset</a>
+          <a class="btn btn-outline-secondary" href="/admin/features/index.php">Reset</a>
         <?php endif; ?>
-        <a href="/web_jasa/admin/features/create.php" class="btn btn-primary">Tambah Feature</a>
+        <a href="/admin/features/create.php" class="btn btn-primary">Tambah Feature</a>
       </div>
     </div>
     <div class="card">
@@ -69,8 +69,8 @@ $summary = "Page {$page} of {$totalPages} (Total {$total})";
               <td><?= (int)$r['sort_order'] ?></td>
               <td><span class="badge bg-<?= $r['active'] ? 'success' : 'secondary' ?>"><?= $r['active'] ? 'Yes' : 'No' ?></span></td>
               <td>
-                <a class="btn btn-sm btn-outline-secondary" href="/web_jasa/admin/features/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
-                <form action="/web_jasa/admin/features/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus feature ini?')">
+                <a class="btn btn-sm btn-outline-secondary" href="/admin/features/edit.php?id=<?= (int)$r['id'] ?>">Edit</a>
+                <form action="/admin/features/delete.php" method="post" style="display:inline-block" onsubmit="return confirm('Hapus feature ini?')">
                   <input type="hidden" name="_csrf" value="<?= csrf_token() ?>">
                   <input type="hidden" name="id" value="<?= (int)$r['id'] ?>">
                   <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>

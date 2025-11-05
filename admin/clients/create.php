@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('INSERT INTO clients (name, category, year, sort_order, active) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute([$name, $category, $year, $sort_order, $active]);
     set_flash('global', 'Client berhasil ditambahkan', 'success');
-    header('Location: /web_jasa/admin/clients/index.php');
+    header('Location: /admin/clients/index.php');
     exit;
   }
 }
@@ -28,7 +28,7 @@ require __DIR__ . '/../layout/header.php';
   <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Tambah Client</h4>
-      <a href="/web_jasa/admin/clients/index.php" class="btn btn-secondary">Kembali</a>
+      <a href="/admin/clients/index.php" class="btn btn-secondary">Kembali</a>
     </div>
     <div class="card">
       <div class="card-body">

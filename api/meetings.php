@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../admin/config.php';
+require __DIR__ . '/config.php';
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, OPTIONS');

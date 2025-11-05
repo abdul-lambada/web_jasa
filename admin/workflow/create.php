@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('INSERT INTO workflow_steps (step_number, title, description, sort_order, active) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute([$step_number, $title, $description, $sort_order, $active]);
     set_flash('global', 'Step workflow berhasil ditambahkan', 'success');
-    header('Location: /web_jasa/admin/workflow/index.php');
+    header('Location: /admin/workflow/index.php');
     exit;
   }
 }
@@ -27,7 +27,7 @@ require __DIR__ . '/../layout/header.php';
   <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Tambah Step</h4>
-      <a href="/web_jasa/admin/workflow/index.php" class="btn btn-secondary">Kembali</a>
+      <a href="/admin/workflow/index.php" class="btn btn-secondary">Kembali</a>
     </div>
     <div class="card">
       <div class="card-body">

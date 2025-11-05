@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare('INSERT INTO services (icon, title, description, sort_order, active) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute([$icon, $title, $description, $sort_order, $active]);
     set_flash('global', 'Service berhasil ditambahkan', 'success');
-    header('Location: /web_jasa/admin/services/index.php');
+    header('Location: /admin/services/index.php');
     exit;
   }
 }
@@ -29,7 +29,7 @@ require __DIR__ . '/../layout/header.php';
   <div class="col-12">
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0">Tambah Service</h4>
-      <a href="/web_jasa/admin/services/index.php" class="btn btn-secondary">Kembali</a>
+      <a href="/admin/services/index.php" class="btn btn-secondary">Kembali</a>
     </div>
     <div class="card">
       <div class="card-body">
