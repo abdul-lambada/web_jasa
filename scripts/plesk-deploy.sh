@@ -39,11 +39,29 @@ if [[ ! -f package.json ]]; then
   exit 3
 fi
 
+# Detect npm path (Plesk often installs Node under /opt/plesk/node/*/bin)
+find_npm() {
+  if command -v npm >/dev/null 2>&1; then echo "npm"; return; fi
+  for v in 22 20 18 16; do
+    if [[ -x "/opt/plesk/node/${v}/bin/npm" ]]; then echo "/opt/plesk/node/${v}/bin/npm"; return; fi
+  done
+  # Some Plesk installs keep only 'node', try npx as fallback
+  if command -v npx >/dev/null 2>&1; then echo "npx --yes npm"; return; fi
+  echo ""; return 1
+}
+
+NPM_BIN="$(find_npm || true)"
+if [[ -z "$NPM_BIN" ]]; then
+  echo "[deploy] ERROR: npm not found in PATH or /opt/plesk/node/*/bin. Enable Node.js extension or set NPM_BIN manually." >&2
+  exit 4
+fi
+
+echo "[deploy] Using NPM: $NPM_BIN"
 echo "[deploy] npm ci"
-npm ci
+eval "$NPM_BIN ci"
 
 echo "[deploy] npm run build"
-npm run build
+eval "$NPM_BIN run build"
 
 mkdir -p "$TARGET_DIR"
 
