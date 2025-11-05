@@ -1,0 +1,28 @@
+# Ensure correct MIME types for modern assets
+AddType application/javascript .js
+AddType text/javascript .mjs
+AddType text/css .css
+AddType application/wasm .wasm
+AddType image/svg+xml .svg
+
+# Disable MultiViews to avoid extensionless content-type issues
+Options -Multiviews
+
+# Caching (optional, safe defaults)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType text/javascript "access plus 7 days"
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 7 days"
+  ExpiresByType application/wasm "access plus 7 days"
+</IfModule>
+
+# SPA fallback to index.html (only if you use client-side routing)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
